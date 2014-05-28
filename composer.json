@@ -7,6 +7,6 @@
         "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
-        "psr-4": {"SoPhp\\Amqp": "src/SoPhp/Amqp"}
+        "psr-4": {"SoPhp\\Amqp\\": "src/SoPhp/Amqp"}
     }
 }
