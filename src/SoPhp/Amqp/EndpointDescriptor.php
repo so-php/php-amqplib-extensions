@@ -97,4 +97,8 @@ class EndpointDescriptor {
         }
         return new EndpointDescriptor($json->exchange, $json->route);
     }
+
+    public function __toString(){
+        return "{$this->getExchange()}@{$this->getRoute()}";
+    }
 } 
