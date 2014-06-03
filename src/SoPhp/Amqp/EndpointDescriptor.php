@@ -6,6 +6,7 @@ namespace SoPhp\Amqp;
 
 use PhpAmqpLib\Channel\AMQPChannel;
 use SoPhp\Amqp\Exception\InvalidArgumentException;
+use stdClass;
 
 /**
  * Describes a destination (exchange)
@@ -92,10 +93,19 @@ class EndpointDescriptor {
      */
     public static function fromJson($json){
         $obj = json_decode($json);
+        return self::fromStdClass($obj);
+    }
+
+    /**
+     * @param stdClass $obj
+     * @return EndpointDescriptor
+     * @throws \SoPhp\Amqp\Exception\InvalidArgumentException
+     */
+    public static function fromStdClass($obj){
         if(!$obj || !isset($obj->exchange) || !isset($obj->route)) {
             throw new InvalidArgumentException("Invalid json provided");
         }
-        return new EndpointDescriptor($json->exchange, $json->route);
+        return new EndpointDescriptor($obj->exchange, $obj->route);
     }
 
     public function __toString(){
