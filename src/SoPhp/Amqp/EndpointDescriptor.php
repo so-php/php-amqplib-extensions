@@ -102,7 +102,7 @@ class EndpointDescriptor {
      * @throws \SoPhp\Amqp\Exception\InvalidArgumentException
      */
     public static function fromStdClass($obj){
-        if(!$obj || !isset($obj->exchange) || !isset($obj->route)) {
+        if(!$obj || !property_exists($obj, 'exchange') || !property_exists($obj, 'route')) {
             throw new InvalidArgumentException("Invalid json provided");
         }
         return new EndpointDescriptor($obj->exchange, $obj->route);
